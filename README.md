@@ -26,7 +26,7 @@ and extensible than is allowed by Docco's "quick-and-dirty" implementation.
 * Recursive processing of directories, and extended globbing support
 * Supports literate programming (Markdown documents with a full program in code blocks)
 * Supports line and block comments, including inline and end-of-line comments
-* Supports any programming language for which comments can be matched by a regular expression
+* Supports any programming language for which comment boundaries can be matched by a regular expression
 * Control over which comments are processed as prose
   - Great for using Grocco alongside an API documentation generator like [JSDoc](http://usejsdoc.org/)
     - JSDoc/JavaDoc comments (`/** ... */`) are excluded by default
