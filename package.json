@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/JordanRickman/grocco/issues"
   },
-  "homepage": "https://github.com/JordanRickman/grocco#readme"
+  "homepage": "https://github.com/JordanRickman/grocco#readme",
+  "devDependencies": {
+    "groc": "^0.8.0"
+  }
 }

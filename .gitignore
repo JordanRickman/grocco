@@ -1,0 +1,6 @@
+# For now during development - include later once it can process its own source
+/doc
+/docs
+
+# NodeJS
+/node_modules
