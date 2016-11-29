@@ -9,6 +9,8 @@ specified in a `.grocco.json` will override those from any ancestor directories 
 
 */
 
+import util from './util'; //<!--!<>-->
+
 export default class Config {
 
   /*
@@ -19,9 +21,8 @@ export default class Config {
   */
   constructor(path, base) {
     // No-argument constructor returns default configuration
-    // **TODO** Clone before returning. Deep copy needed? Depends on object structure.
     if (!path && !base)
-      return this.DEFAULTS;
+      return util.cloneJSON(this.DEFAULTS);
   }
 
 }
