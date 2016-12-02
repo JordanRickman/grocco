@@ -2,14 +2,14 @@
 // Versatile functions for common use.
 
 // export a stateless wrapper object - functional interface
-export default util = {
+module.exports = {
 
   // ## cloneJSON
   // Clone an object, retaining all JSON-able properties.
-  // If passed a string, read string as JSON.
   cloneJSON: function(obj) {
-    // **TODO** Find and import a JSON converter package
-    if (typeof(obj) === 'string') return fromJSON(obj);
-    return fromJSON(toJSON(obj));
+    if (typeof(obj) === 'object' || typeof(obj) === 'string'
+    || typeof(obj) === 'number' || typeof(obj) === 'boolean')
+      return JSON.parse(JSON.stringify(obj));
+    else throw new TypeError("Cannot clone functions or undefined.");
   }
 }

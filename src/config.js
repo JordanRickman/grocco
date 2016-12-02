@@ -9,9 +9,9 @@ specified in a `.grocco.json` will override those from any ancestor directories 
 
 */
 
-import util from './util'; //<!--!<>-->
+var util = require('./util'); //<!--!<>-->
 
-export default class Config {
+class Config {
 
   /*
   ### Constructor
@@ -73,3 +73,4 @@ Config.DEFAULTS = {
     }
   ]
 }
+module.exports = Config;
