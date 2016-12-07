@@ -1,3 +1,5 @@
+'use strict';
+
 var util = require('../src/util');
 var assert = require('assert');
 

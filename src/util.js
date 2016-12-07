@@ -1,5 +1,6 @@
 // # Utils Class
 // Versatile functions for common use.
+'use strict';
 
 // export a stateless wrapper object - functional interface
 module.exports = {
