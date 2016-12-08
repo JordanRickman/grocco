@@ -21,6 +21,11 @@ Both are robust tools, and Docco remains a major player among JS documentation g
 actively maintained. Grocco aims to provide a richer featureset than these predecessors, and to be more configurable
 and extensible than is allowed by Docco's "quick-and-dirty" implementation.
 
+Unlike Docco and Groc, Grocco does not support HTML templates - it simply converts to Github-flavored Markdown, and lets
+Marked process that. This means that only a single-column layout is supported, not prose and code side-by-side. This was
+primarily a labor-saving decision, as I prefer linear layout for my own personal usage anyways, and also want the output
+to be committed as Markdown documents to a Git repository.
+
 ## (Planned) Features
 
 * Recursive processing of directories, and extended globbing support
@@ -38,9 +43,6 @@ and extensible than is allowed by Docco's "quick-and-dirty" implementation.
 * Github-flavored Markdown support, via [Marked](https://github.com/chjj/marked)
 * Syntax highlighting
   - can specify language on a code-block level as in Github-flavored Markdown
-* Outputs to HTML or just plain Markdown
-* Inline and side-by-side HTML templates included, or roll your own
-  - Default template allows expanding/collapsing of code sections
 * Special directives for...
   - Code sections that should be collapsed by default
   - Code sections that should be excluded entirely from the generated documentation
@@ -50,24 +52,7 @@ and extensible than is allowed by Docco's "quick-and-dirty" implementation.
 * **Stretch Goals**
   - Automatic management of internal links
   - Automatic generation of anchors for headings
-
-## Pipeline
-
-To better understand Grocco and help configure it for your needs, here is an overview of the Grocco
-processing pipeline.
-
-_**Source -> Markdown -> JSON -> HTML**_
-
-**Source** Source code files, either literate or regular source code. This is what you write.
-
-**Markdown** Markdown files in a Github-compatible format. If you are outputting Markdown, processing stops here.
-
-**JSON** JSON files containing all the information Grocco needs to render a template. If you plan to make your own
-templates, you'll need to understand this data format.
-
-- [ ] insert a link to the documentation for the JSON format, once you have it
-
-**HTML** Final html output (with embedded JavaScript).
+  - HTML templates and side-by-side layout
 
 ### Processing Phases
 
@@ -76,15 +61,3 @@ templates, you'll need to understand this data format.
 Excluded comments and source code blocks are removed. For literate source files, nothing else is changed. For regular
 source files, code and prose are swapped - the source file is converted into a literate source file. Grocco-specific
 directives are wrapped in HTML comments (`<!-- ... -->`), preserving compatibility with other Markdown processors.
-
-#### Markdown -> JSON
-
-The Markdown document is minimally parsed in order to detect code blocks. Each block of prose is paired with the
-block of code it precedes, allowing for alignment in side-by-side layout. Each such pair, along with some metadata, forms a _section_ object that is stored in a JSON array (itself wrapped in a JSON document with some additional metadata). Markdown headings also signal a new section - sections need not contain a code block.
-
-#### JSON -> HTML
-
-Markdown text is passed through the Marked library to render HTML, and inserted into the template. Code blocks are passed through [Highlight.js](https://highlightjs.org/). Metadata on each section is available to the template.
-
-- [ ] More details on how templates are rendered and described. Handlebars? Handlebars-style using Underscore.js?
-  A JavaScript API? Some combination thereof?
